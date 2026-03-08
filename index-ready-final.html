@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daring.smm — Фокус-группа</title>
+  <meta name="description" content="Закрытая фокус-группа: AI-система генерации контента для nail-индустрии. Набор 20 участников." />
+  <style>
+    :root{
+      --bg:#07060a;
+      --bg2:#0f0b12;
+      --panel:rgba(255,255,255,0.06);
+      --panel-strong:rgba(255,255,255,0.08);
+      --border:rgba(255,255,255,0.10);
+      --text:rgba(255,255,255,0.94);
+      --muted:rgba(255,255,255,0.70);
+      --rose:#C7869A;
+      --rose-2:#B86D86;
+      --rose-glow:rgba(199,134,154,0.28);
+      --shadow:0 20px 60px rgba(0,0,0,0.55);
+      --radius:22px;
+      --radius-sm:16px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 540px at 16% 6%, rgba(199,134,154,.18), transparent 58%),
+        radial-gradient(800px 520px at 84% 18%, rgba(199,134,154,.12), transparent 56%),
+        radial-gradient(1200px 900px at 50% 100%, rgba(199,134,154,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    .nav{
+      position:sticky;top:0;z-index:40;
+      background:rgba(7,6,10,.60);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav-inner{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      font-size:14px;font-weight:600;letter-spacing:.4px;
+    }
+    .brand small{color:var(--muted);font-weight:500}
+
+    .hero{padding:56px 0 28px}
+    .hero-wrap{
+      position:relative;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:30px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hero-wrap::before{
+      content:"";
+      position:absolute;inset:-1px;
+      background:radial-gradient(480px 200px at 68% 0%, rgba(199,134,154,.24), transparent 64%);
+      pointer-events:none;
+    }
+    .hero-grid{
+      position:relative;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      padding:34px;
+      align-items:start;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);font-size:12px;letter-spacing:.3px;
+    }
+    .title{
+      margin:18px 0 14px;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      font-size:clamp(36px, 4.8vw, 60px);
+      line-height:1.03;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      font-size:clamp(16px, 1.6vw, 19px);
+      color:var(--muted);
+      line-height:1.5;
+      max-width:46ch;
+    }
+    .meta{
+      display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 18px;
+    }
+    .pill{
+      padding:9px 13px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);font-size:13px;
+    }
+    .highlight{
+      margin-top:18px;
+      padding:16px 18px;
+      border-radius:18px;
+      border:1px solid rgba(199,134,154,.34);
+      background:linear-gradient(180deg, rgba(199,134,154,.14), rgba(255,255,255,.03));
+      color:rgba(255,255,255,.92);
+      max-width:44ch;
+      box-shadow:0 0 0 1px rgba(199,134,154,.08) inset;
+    }
+
+    .hero-card{
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.09);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      min-height:100%;
+      padding:18px;
+      display:grid;
+      gap:14px;
+    }
+    .mini-stat{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+    .mini-box{
+      padding:14px;
+      border-radius:16px;
+      background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .mini-box b{display:block;font-size:22px;color:var(--rose);font-weight:700}
+    .mini-box span{display:block;margin-top:4px;font-size:12px;color:var(--muted);line-height:1.35}
+    .hero-list{
+      margin:0;padding-left:18px;color:rgba(255,255,255,.90)
+    }
+    .hero-list li{margin:10px 0;line-height:1.45}
+    .hero-note{
+      margin-top:auto;
+      padding:14px;
+      border-radius:16px;
+      background:rgba(199,134,154,.10);
+      border:1px solid rgba(199,134,154,.22);
+      color:rgba(255,255,255,.86);
+      font-size:13px;line-height:1.45;
+    }
+
+    section{padding:24px 0}
+    .section-title{
+      margin:0 0 14px;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      font-size:clamp(26px, 3vw, 36px);
+      letter-spacing:.15px;
+    }
+    .section-copy{
+      margin:0 0 18px;color:var(--muted);line-height:1.55;max-width:70ch
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(5,minmax(0,1fr));
+      gap:12px;
+    }
+    .card{
+      padding:16px 14px;
+      min-height:110px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 0 0 1px rgba(0,0,0,.2) inset;
+    }
+    .card b{display:block;font-size:14px;line-height:1.3}
+    .card span{display:block;margin-top:7px;font-size:12px;color:var(--muted);line-height:1.45}
+
+    .two-col{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      align-items:start;
+    }
+    .panel{
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(255,255,255,.10);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .list ul{margin:0;padding-left:20px}
+    .list li{margin:10px 0;line-height:1.5;color:rgba(255,255,255,.90)}
+    .note{margin-top:12px;color:var(--muted);font-size:13px;line-height:1.5}
+
+    .form-wrap{position:relative;overflow:hidden}
+    .form-wrap::before{
+      content:"";
+      position:absolute;top:-120px;right:-70px;width:260px;height:260px;border-radius:50%;
+      background:radial-gradient(circle, rgba(199,134,154,.18), transparent 68%);
+      pointer-events:none;
+    }
+    form{display:grid;gap:10px;margin-top:10px;position:relative;z-index:1}
+    .field{
+      width:100%;padding:13px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.24);
+      color:var(--text);
+      outline:none;
+      resize:vertical;
+      font:inherit;
+    }
+    .field::placeholder{color:rgba(255,255,255,.44)}
+    .field:focus{
+      border-color:rgba(199,134,154,.75);
+      box-shadow:0 0 0 4px rgba(199,134,154,.14);
+    }
+    .btn{
+      margin-top:6px;
+      padding:14px 16px;
+      border-radius:14px;
+      border:1px solid rgba(199,134,154,.88);
+      background:linear-gradient(180deg, rgba(199,134,154,.36), rgba(199,134,154,.18));
+      color:#fff;
+      font-weight:600;letter-spacing:.2px;
+      cursor:pointer;
+      box-shadow:0 12px 34px rgba(199,134,154,.16);
+      transition:.2s ease;
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:0 18px 44px rgba(199,134,154,.22)}
+    .fineprint{margin-top:6px;color:rgba(255,255,255,.58);font-size:12px;line-height:1.4}
+    .status{display:none;margin-top:10px;font-size:13px;color:rgba(255,255,255,.84)}
+
+    .footer{
+      padding:28px 0 44px;
+      color:rgba(255,255,255,.56);
+      font-size:12px;
+      text-align:center;
+    }
+
+    @media (max-width:980px){
+      .hero-grid,.two-col{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr 1fr}
+      .hero-wrap{border-radius:24px}
+      .hero-grid{padding:22px}
+    }
+    @media (max-width:640px){
+      .nav-inner{padding:12px 0}
+      .hero{padding-top:24px}
+      .cards{grid-template-columns:1fr}
+      .title{font-size:36px}
+      .subtitle{font-size:16px}
+      .mini-stat{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Daring.smm <small>• Focus Group</small></div>
+    </div>
+  </div>
+
+  <main class="container">
+    <header class="hero" id="project">
+      <div class="hero-wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">Закрытый набор • 20 участников</div>
+            <h1 class="title">Закрытая фокус-группа</h1>
+            <div class="subtitle">AI-система генерации контента для nail-индустрии</div>
+
+            <div class="meta">
+              <div class="pill">Бесплатный тест</div>
+              <div class="pill">Отбор по анкете</div>
+              <div class="pill">Мастера из стран СНГ</div>
+            </div>
+
+            <div class="subtitle" style="max-width:62ch;">
+              Мы разработали систему AI-генерации контента для nail-индустрии. Продукт основан на практике работы с beauty-бизнесом США с 2020 года.
+            </div>
+
+            <div class="highlight">
+              Продукт разработан на основе американской модели продаж.
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="mini-stat">
+              <div class="mini-box">
+                <b>20</b>
+                <span>мест в закрытом тесте</span>
+              </div>
+              <div class="mini-box">
+                <b>AI</b>
+                <span>система генерации контента</span>
+              </div>
+            </div>
+
+            <ul class="hero-list">
+              <li>Персонализированная логика контента для мастера</li>
+              <li>Структура, основанная на продаже beauty-услуг</li>
+              <li>Триггерная подача</li>
+              <li>Контент не “для галочки”, а под реальные заявки</li>
+            </ul>
+
+            <div class="hero-note">
+              Сейчас мы открываем закрытый тест для русскоговорящих мастеров, чтобы собрать результаты и отзывы перед масштабированием продукта.
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="why">
+      <h2 class="section-title">Почему это работает</h2>
+      <div class="cards">
+        <div class="card"><b>Стратегическая архитектура</b><span>Контент как система, а не набор случайных идей.</span></div>
+        <div class="card"><b>Поведенческие триггеры</b><span>Смыслы и формулировки, которые удерживают внимание.</span></div>
+        <div class="card"><b>Продажная структура Reels</b><span>Логика роликов, которая ведёт к записи.</span></div>
+        <div class="card"><b>Сегментация аудитории</b><span>Разные сообщения для разных типов клиентов.</span></div>
+        <div class="card"><b>Адаптация под рынок США</b><span>Модель подачи протестирована на beauty-рынке США.</span></div>
+      </div>
+      <div class="note">Мы тестируем систему на русскоговорящих мастерах. Основа продукта — американская модель продаж beauty-услуг.</div>
+    </section>
+
+    <section id="test">
+      <h2 class="section-title">Что входит в тест</h2>
+      <div class="two-col">
+        <div class="panel list">
+          <ul>
+            <li>Контент-стратегия</li>
+            <li>Хуки</li>
+            <li>Сценарии Reels</li>
+            <li>Посты</li>
+            <li>CTA</li>
+            <li>Хештеги</li>
+            <li>Позиционирование мастера</li>
+          </ul>
+          <div class="note">На этом этапе мы показываем продукт через результат, а не через полный интерфейс системы.</div>
+        </div>
+
+        <div class="panel form-wrap" id="form">
+          <h2 class="section-title" style="margin:0 0 6px;">Подать заявку</h2>
+          <div class="note" style="margin:0 0 10px;">Заполни форму — мы свяжемся с тобой, если ты подходишь под отбор.</div>
+
+          <form id="focusForm" method="POST">
+            <input class="field" name="name" placeholder="Имя" required />
+            <input class="field" name="instagram" placeholder="Instagram" required />
+            <input class="field" name="city" placeholder="Город" />
+            <input class="field" name="level" placeholder="Уровень (начинающий / mid / pro)" />
+            <input class="field" name="clients" placeholder="Количество клиентов в месяц" />
+            <textarea class="field" name="why" placeholder="Почему хотите участвовать?" rows="4"></textarea>
+
+            <button class="btn" type="submit">Получить доступ</button>
+            <div class="fineprint">Отправляя заявку, вы соглашаетесь предоставить обратную связь по результатам теста.</div>
+            <div class="status" id="status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">Daring.smm • Digital Marketing for Beauty in USA</div>
+  </main>
+
+  <script>
+    const form = document.getElementById('focusForm');
+    const statusEl = document.getElementById('status');
+
+    // ВСТАВЬ СЮДА URL Google Apps Script Web App
+    const ENDPOINT = "https://script.google.com/macros/s/AKfycbxdjIb0iMviMWL8A_O_BZHGf4aBYSlsqqgxnau4PWaqsvu9cJMBptVNv-ud5aq0iuQ/exec";
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!ENDPOINT) {
+        statusEl.style.display = 'block';
+        statusEl.textContent = 'Нужно вставить URL Google Apps Script в код страницы.';
+        return;
+      }
+
+      statusEl.style.display = 'block';
+      statusEl.textContent = 'Отправляем…';
+
+      try {
+        const fd = new FormData(form);
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          body: fd,
+          mode: 'cors'
+        });
+
+        const text = await res.text();
+        if (!res.ok) throw new Error(text || 'Bad response');
+
+        statusEl.textContent = 'Готово. Мы получили заявку.';
+        form.reset();
+      } catch (err) {
+        statusEl.textContent = 'Не отправилось. Проверь URL скрипта или попробуй ещё раз.';
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
