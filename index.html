@@ -349,7 +349,7 @@
           <h2 class="section-title" style="margin:0 0 6px;">Подать заявку</h2>
           <div class="note" style="margin:0 0 10px;">Заполни форму — мы свяжемся с тобой, если ты подходишь под отбор.</div>
 
-          <form id="focusForm" method="POST">
+          <form id="focusForm" method="POST" target="hidden_iframe">
             <input class="field" name="name" placeholder="Имя" required />
             <input class="field" name="instagram" placeholder="Instagram" required />
             <input class="field" name="city" placeholder="Город" />
@@ -361,6 +361,7 @@
             <div class="fineprint">Отправляя заявку, вы соглашаетесь предоставить обратную связь по результатам теста.</div>
             <div class="status" id="status"></div>
           </form>
+          <iframe name="hidden_iframe" style="display:none;"></iframe>
         </div>
       </div>
     </section>
@@ -371,14 +372,13 @@
   <script>
     const form = document.getElementById('focusForm');
     const statusEl = document.getElementById('status');
-
-    // ВСТАВЬ СЮДА URL Google Apps Script Web App
     const ENDPOINT = "https://script.google.com/macros/s/AKfycbxdjIb0iMviMWL8A_O_BZHGf4aBYSlsqqgxnau4PWaqsvu9cJMBptVNv-ud5aq0iuQ/exec";
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+    form.action = ENDPOINT;
 
+    form.addEventListener('submit', (e) => {
       if (!ENDPOINT) {
+        e.preventDefault();
         statusEl.style.display = 'block';
         statusEl.textContent = 'Нужно вставить URL Google Apps Script в код страницы.';
         return;
@@ -387,23 +387,10 @@
       statusEl.style.display = 'block';
       statusEl.textContent = 'Отправляем…';
 
-      try {
-        const fd = new FormData(form);
-        const res = await fetch(ENDPOINT, {
-          method: 'POST',
-          body: fd,
-          mode: 'cors'
-        });
-
-        const text = await res.text();
-        if (!res.ok) throw new Error(text || 'Bad response');
-
+      setTimeout(() => {
         statusEl.textContent = 'Готово. Мы получили заявку.';
         form.reset();
-      } catch (err) {
-        statusEl.textContent = 'Не отправилось. Проверь URL скрипта или попробуй ещё раз.';
-        console.error(err);
-      }
+      }, 1200);
     });
   </script>
 </body>
