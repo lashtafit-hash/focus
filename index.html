@@ -395,8 +395,32 @@
       statusEl.textContent = 'Отправляем…';
 
       setTimeout(() => {
-        statusEl.textContent = 'Готово. Мы получили заявку.';
-        form.reset();
+        form.innerHTML = `
+          <div style="padding: 8px 0 4px;">
+            <div style="font-family: ui-serif, Georgia, 'Times New Roman', serif; font-size: clamp(26px, 3vw, 34px); margin-bottom: 12px; color: rgba(255,255,255,0.96);">
+              Thank you
+            </div>
+            <div style="color: rgba(255,255,255,0.88); line-height: 1.65; font-size: 15px; margin-bottom: 14px;">
+              Ваша заявка принята.<br>
+              Мы напишем вам в Instagram после рассмотрения анкеты.
+            </div>
+            <div style="color: rgba(255,255,255,0.72); line-height: 1.6; font-size: 14px; margin-bottom: 18px;">
+              Не забудьте подписаться на нашу страницу <b>@daring.smm</b>, чтобы не пропустить обновления по фокус-группе.
+            </div>
+            <a href="https://instagram.com/daring.smm" target="_blank" rel="noopener noreferrer" style="
+              display:inline-block;
+              padding:13px 18px;
+              border-radius:14px;
+              border:1px solid rgba(199,134,154,0.85);
+              background: linear-gradient(180deg, rgba(199,134,154,0.34), rgba(199,134,154,0.18));
+              color: rgba(255,255,255,0.95);
+              letter-spacing:.3px;
+              text-decoration:none;
+              box-shadow: 0 10px 30px rgba(199,134,154,0.16);
+            ">Подписаться на @daring.smm</a>
+          </div>
+        `;
+        statusEl.style.display = 'none';
       }, 1200);
     });
   </script>
